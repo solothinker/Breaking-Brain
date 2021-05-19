@@ -32,7 +32,10 @@ print(dfWaves.head())
 df = pd.DataFrame()
 
 for wave in waveName[4:]:
-    df[wave] = dfWaves[dfWaves['signals'] == wave]['value'].values
+    ind = dfWaves['signals'] == wave
+    df[wave] = dfWaves[ind]['value'].values
+    
+df['time'] = dfWaves[ind]['time'].values
 
 print(df.head())
 df.to_csv("allWaves.csv")
