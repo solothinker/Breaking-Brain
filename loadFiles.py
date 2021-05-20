@@ -15,6 +15,7 @@ for da in data:
 
 # making the dataframe
 df = pd.DataFrame(dataPack,columns=["time","signals","value"])
+df['time'] = pd.to_datetime(df['time'].values,unit='ms').time # changing to HH:MM:SS.F formate
 print(df.head())
 df.to_csv("OriginalData.csv")
 
@@ -35,7 +36,7 @@ for wave in waveName[4:]:
     ind = dfWaves['signals'] == wave
     df[wave] = dfWaves[ind]['value'].values
     
-df['time'] = dfWaves[ind]['time'].values
+df.index = dfWaves[ind]['time'].values
 
 print(df.head())
 df.to_csv("allWaves.csv")
