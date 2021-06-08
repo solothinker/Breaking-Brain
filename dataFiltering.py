@@ -32,13 +32,18 @@ y = FilterWilter.butter_lowpass_filter(data[:sampleLen], cutoff, fs, order)
 
 xf,yf = FilterWilter.getFFT(y)
 _,dyf = FilterWilter.getFFT(data[:sampleLen])
-plt.plot(xf,np.multiply(dyf,dyf.conjugate())/sampleLen,'b-',label='raw')
-plt.plot(xf,np.multiply(yf,yf.conjugate())/sampleLen,'g-',linewidth=2,label='filter')
-##plt.xlim(1,cutoff*2)
-##plt.ylim(0,500)
+dPSD = np.abs(dyf)**2/sampleLen
+yPSD = np.abs(yf)**2/sampleLen
+plt.plot(xf,dPSD,'b-',label='raw')
+plt.plot(xf,yPSD,'g-',linewidth=2,label='filter')
+plt.xlim(1,cutoff*2)
+plt.ylim(0,2e4)
 plt.legend()
 plt.xlabel('Frequency [Hz]')
 plt.title('Frequency Plot')
 plt.locator_params(axis='x', nbins=10)
 plt.grid()
 plt.show()
+
+band = FilterWilter.eegBand(xf,yf)
+print(band)
