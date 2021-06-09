@@ -11,7 +11,7 @@ df = pd.read_csv('allRawData.csv')
 data = df['value'].values
 
 samples = 512.0
-sampleLen = 10000
+sampleLen = len(data)#10000
 order  = 6
 cutoff = 50     # desired cutoff frequency of the filter, Hz
 
@@ -20,12 +20,13 @@ data = data[:sampleLen]
 
 b, a = FilterWilter.butter_lowpass(cutoff, samples, order)
 hann = np.hanning(samples)
+hann = 1
 signals = ['Delta','Theta','Alpha','Beta','Gamma','R']
 bandDict = dict()
 for ii in signals:        
     bandDict[ii] = []
     
-for ii in range(256,sampleLen,256):
+for ii in range(256,sampleLen,512):
     if ii+256>= sampleLen:
         continue
     
@@ -71,4 +72,6 @@ for ii in range(256,sampleLen,256):
     
 plt.close()    
 
-
+bandDF = pd.DataFrame.from_dict(bandDict)
+print(bandDF.head())
+bandDF.to_csv('bandsofbrain.csv')
