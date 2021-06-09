@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 from scipy import stats
 
 
-NSdf = pd.read_csv('allWaves.csv')
-caldf = pd.read_csv('bandsofbrain.csv')
+NSdf = pd.read_csv('../data/allWaves.csv')
+caldf = pd.read_csv('../data/bandsofbrain.csv')
 ##plt.subplot(2,1,1)
 ##plt.plot(NSdf['DELTA'],label='Delta of NS')
 ##plt.plot(caldf['Delta'],label='Delta of Cal')

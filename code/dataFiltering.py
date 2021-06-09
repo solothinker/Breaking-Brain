@@ -14,7 +14,7 @@ b, a = FilterWilter.butter_lowpass(cutoff, fs, order)
 
 # Plot the frequency response.
 ##FilterWilter.filtPlot(a,b,fs,cutoff)
-df = pd.read_csv('allRawData.csv')
+df = pd.read_csv('../data/allRawData.csv')
 data = df['value'].values
 sampleLen = 1000
 y = FilterWilter.butter_lowpass_filter(data[:sampleLen], cutoff, fs, order)

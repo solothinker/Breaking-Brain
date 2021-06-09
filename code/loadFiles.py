@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-with open("1091.csv", "r") as file:
+with open("../data/1091.csv", "r") as file:
     data = file.read()
 
 # spliting the data into rows 
@@ -17,7 +17,7 @@ for da in data:
 df = pd.DataFrame(dataPack,columns=["time","signals","value"])
 df['time'] = pd.to_datetime(df['time'].values,unit='ms').time # changing to HH:MM:SS.F formate
 print(df.head())
-df.to_csv("OriginalData.csv")
+df.to_csv("../data/OriginalData.csv")
 
 # storing the unique signals name
 waveName = df['signals'].unique()
@@ -26,7 +26,7 @@ rawInd = df['signals'] == waveName[0]
 dfRaw = df[rawInd]
 dfRaw = dfRaw.drop("signals",axis=True)
 dfWaves = df[~rawInd]
-dfRaw.to_csv("allRawData.csv")
+dfRaw.to_csv("../data/allRawData.csv")
 print(dfRaw.head())
 print(dfWaves.head())
 
@@ -39,7 +39,7 @@ for wave in waveName[4:]:
 df.index = dfWaves[ind]['time'].values
 
 print(df.head())
-df.to_csv("allWaves.csv")
+df.to_csv("../data/allWaves.csv")
 
 df = pd.DataFrame()
 
@@ -47,4 +47,4 @@ for wave in waveName[1:4]:
     df[wave] = dfWaves[dfWaves['signals'] == wave]['value'].values
 
 print(df.head())
-df.to_csv("accelerometerData.csv")
+df.to_csv("../data/accelerometerData.csv")

@@ -4,7 +4,7 @@ from scipy.stats import zscore
 from scipy.fft import fft, fftfreq,rfft, rfftfreq
 import matplotlib.pyplot as plt
 
-df =  pd.read_csv("allRawData.csv")
+df =  pd.read_csv("../data/allRawData.csv")
 df = df.drop('Unnamed: 0',axis=True)
 print(df.head())
 

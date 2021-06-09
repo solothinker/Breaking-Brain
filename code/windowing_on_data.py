@@ -7,7 +7,7 @@ from Filters import FilterWilter
 
 plt.rcParams["figure.figsize"] = (20,10)
 
-df = pd.read_csv('allRawData.csv')
+df = pd.read_csv("../data/allRawData.csv")
 data = df['value'].values
 
 samples = 512.0
@@ -74,4 +74,4 @@ plt.close()
 
 bandDF = pd.DataFrame.from_dict(bandDict)
 print(bandDF.head())
-bandDF.to_csv('bandsofbrain.csv')
+bandDF.to_csv('../data/bandsofbrain.csv')

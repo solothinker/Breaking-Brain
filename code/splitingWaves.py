@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 fs = 512                                # Sampling rate (512 Hz)
-df = pd.read_csv('allRawData.csv')
+df = pd.read_csv('../data/allRawData.csv')
 print(df.head(10))
 data = df['value'].values#np.random.uniform(0, 100, 1024)  # 2 
 
