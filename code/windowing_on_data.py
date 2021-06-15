@@ -17,10 +17,11 @@ cutoff = 50     # desired cutoff frequency of the filter, Hz
 
 time = np.linspace(0,sampleLen/samples,sampleLen)
 data = data[:sampleLen]
+##data = FilterWilter.outlier_smoother(data, m=3, win=5)
 
 b, a = FilterWilter.butter_lowpass(cutoff, samples, order)
 hann = np.hanning(samples)
-hann = 1
+
 signals = ['Delta','Theta','Alpha','Beta','Gamma','R']
 bandDict = dict()
 for ii in signals:        
@@ -32,7 +33,7 @@ for ii in range(256,sampleLen,512):
     
     t = time[ii-256:ii+256]
     y = data[ii-256:ii+256]
-    yf = FilterWilter.butter_lowpass_filter(y*hann,b,a)
+    yf = FilterWilter.butter_filtering(y*hann,b,a)
     
     plt.subplot(2,2,1)
     plt.plot(t,y,'b-',label='raw')
